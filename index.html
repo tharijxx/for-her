@@ -163,12 +163,29 @@ setInterval(() => {
   setTimeout(() => heart.remove(), 4000);
 }, 300);
 
+    setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 4000);
+}, 300);
+
   }
 }
 </script>
 
+  <audio controls style="margin-top:20px;">
+  <source src="voice.ogg" type="audio/ogg">
+  Your browser does not support audio.
+</audio>
+
+
 </body>
 </html>
+
 
 
 
