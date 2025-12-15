@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For You ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.hidden { display: none; }
+
+input {
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 220px;
+  text-align: center;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px 26px;
+  border-radius: 30px;
+  border: none;
+  background: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#box {
+  font-size: 80px;
+  animation: float 2s infinite ease-in-out;
+  cursor: pointer;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+img {
+  max-width: 80%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="lock">
+  <h2>🔒 Locked</h2>
+  <p>Hint: something only we know 💭</p>
+  <input id="pass" placeholder="Enter password" />
+  <br>
+  <button onclick="check()">Unlock 💗</button>
+  <p id="error"></p>
+</div>
+
+<!-- GIFT BOX -->
+<div id="gift" class="hidden">
+  <h2>Tap the gift 🎁</h2>
+  <div id="box">🎁</div>
+</div>
+
+<!-- SURPRISE CONTENT -->
+<div id="content" class="hidden">
+  <img id="photo">
+  <p id="text"></p>
+  <button onclick="next()">Next 💖</button>
+</div>
+
+<script>
+const correctPassword = "mygirl"; // CHANGE THIS
+
+let step = 0;
+
+const surprises = [
+  { img: "pic1.jpg", text: "This is us 🥺❤️" },
+  { img: "pic2.jpg", text: "One of my favorite memories with you" },
+  { img: "pic3.jpg", text: "You make my world feel softer" },
+  { img: "pic4.jpg", text: "I smile every time I see you" },
+  { img: "pic5.jpg", text: "Happy Birthday my love 🎂❤️" }
+];
+
+function check() {
+  const input = document.getElementById("pass").value;
+  if (input === correctPassword) {
+    document.getElementById("lock").classList.add("hidden");
+    document.getElementById("gift").classList.remove("hidden");
+  } else {
+    document.getElementById("error").innerText = "Hmm… try again 👀";
+  }
+}
+
+document.getElementById("box").onclick = () => {
+  document.getElementById("gift").classList.add("hidden");
+  document.getElementById("content").classList.remove("hidden");
+  load();
+};
+
+function load() {
+  document.getElementById("photo").src = surprises[step].img;
+  document.getElementById("text").innerText = surprises[step].text;
+}
+
+function next() {
+  step++;
+  if (step < surprises.length) {
+    load();
+  } else {
+    document.body.innerHTML = "<h1>I’m really grateful for you ❤️</h1><p>Happy Birthday</p>";
+  }
+}
+</script>
+
+</body>
+</html>
